@@ -5,7 +5,11 @@
 <script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
 <script type="text/javascript">
 	$( function() {
-		/* 코드를 완성하세요 */
+		setTimeout(function(){ // 전체 변경할때  내용도! cf. html는 내용만 바꾸는거
+			$("p").replaceWith("<div><strong>변경후</strong></div>");
+	//		$("p").html("<div><strong>변경후</strong></div>");
+			
+		},2000);
 	} );  
 </script>
 </head>

@@ -4,9 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
 <script type="text/javascript">
+	var interval = null;
+
 	$( function() {
-	
-		/* 코드를 완성하세요 */
+		
+		interval = setInterval(function(){//setInterval 계속해서 반복
+			var $li = $("li:first-child");
+		if($li.length==0){
+			console.log("stop");
+			clearInterval(interval);
+			return;
+		}
+	$li.remove();
+		},500);
 	} );  
 </script>
 </head>

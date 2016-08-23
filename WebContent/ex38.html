@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>37에서 더블클릭</title>
+<script type="text/javascript" src="./jquery/jquery-1.9.0.js"></script>
+<script type="text/javascript">
+var intervalSlideShow = null;
+var indexImage = 0;
+var images = [ 
+	"국화:Chrysanthemum.jpg", 
+	"사막:Desert.jpg", 
+	"수국:Hydrangeas.jpg", 
+	"해파리:Jellyfish.jpg", 
+	"코알라:Koala.jpg", 
+	"등대:Lighthouse.jpg", 
+	"펭귄:Penguins.jpg", 
+	"툴립:Tulips.jpg" ];
+
+var slideshow = function(){
+	var datas = images[indexImage].split(":");
+	$("img").attr({
+		"src":"images/"+datas[1],
+		"alt":datas[0]
+	});
+	if(++indexImage ==images.length){
+		indexImage=0;
+	}
+	$("#image-title").text(datas[0]);
+}
+$(function(){
+
+	$("#image-change").click(function(){// random은 0 ~0.999999 이기 때문에 1을 넘지않음
+		
+		//랜덤변수
+		var result = Math.floor( Math.random() * images.length  ) ;
+		var datas  = images[result].split(":");	
+		
+		$("img").attr({
+			"src":"images/"+datas[1],
+			"alt":datas[0]
+		});
+	
+	});
+	$("img").click(function(){
+		var $img = $(this);
+	 	var title =	$img.attr("alt");
+		$("#image-title").text(title);
+	});
+	
+	$("#ss-start").click(function(){
+	  intervalSlideShow	= setInterval(slideshow, 1000);
+	});
+	
+	$("#ss-stop").click(function(){
+		  if(intervalSlideShow == null){
+			  return;
+		  }
+		  clearInterval(intervalSlideShow);
+		  intervalSlideShow = null;
+		});
+});
+</script>
+</head>
+<body>
+	<button id='image-change'>화면을 변경</button>
+	<h1>그림제목: <strong id='image-title'></strong></h1>
+	<p>
+		<img src="images/Desert.jpg" alt="사막" />
+	</p>
+	<button id='ss-start'>슬라이드쇼 시작</button> <button id='ss-stop'>슬라이드쇼 중지</button>
+</body>
+</html>

@@ -18,9 +18,16 @@ var images = [
 
 $(function(){
 
-	$("button").click(function(){
-		// 랜덤 변수 
-		var result = Math.floor( Math.random() * (images.length-1)  ) + 1;
+	$("button").click(function(){// random은 0 ~0.999999 이기 때문에 1을 넘지않음
+		
+		//랜덤변수
+		var result = Math.floor( Math.random() * images.length  ) ;
+		var datas  = images[result].split(":");	
+		
+		$("img").attr({
+			"src":"images/"+datas[1],
+			"alt":datas[0]
+		});
 	});
 	
 });
